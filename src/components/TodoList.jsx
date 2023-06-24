@@ -27,15 +27,20 @@ function TodoList({todoList, setTodoList}) {
     }
 
     return (
-        <div>
+        <div className='list-box'>
             <h2>working</h2>
-            {
-            todoList.map(todo => <TodoListItems todo ={todo} key={todo.id} removeTodo ={removeTodo} todoToComplete ={todoToComplete} />)
-            }
+            <div>
+                {
+                todoList.map(todo => <TodoListItems todo ={todo} key={todo.id} removeTodo ={removeTodo} todoToComplete ={todoToComplete} />)
+                }
+            </div>
             <h2>Done</h2>
-            {
-            completeList.map(todo => <CompleteTodo todo ={todo} key={todo.id} removeTodo ={removeTodo} CompleteToTodo ={CompleteToTodo} />)
-            }
+            <div>
+                {
+                completeList.map(todo => <CompleteTodo todo ={todo} key={todo.id} removeTodo ={removeTodo} CompleteToTodo ={CompleteToTodo} />)
+                }
+            </div>
+            
         </div>
     );
 }

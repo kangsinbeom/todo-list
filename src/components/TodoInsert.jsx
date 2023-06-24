@@ -25,12 +25,12 @@ function TodoInsert({todoList, setTodoList}) {
         console.log(todoList)
     }
     return (
-        <div>
-            제목 : <input 
+        <div className='insert-box'>
+            <p>제목 :</p> <input 
                 value= {title}
                 onChange={onChangeTitle}
                 />
-            내용 : <input
+            <p>내용 :</p> <input
                 value= {desc}
                 onChange={onChangeDesc}
                 />

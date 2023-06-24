@@ -6,7 +6,7 @@ function CompleteTodo({todo, removeTodo, CompleteToTodo}) {
     
 
     return (
-        <div>
+        <div className='todo-item'>
             <h2>{todo.title}</h2>
             <p>{todo.desc}</p>
             <button onClick={() => removeTodo(todo.id)}>삭제하기</button>
