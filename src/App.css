@@ -5,9 +5,6 @@ main {
   margin: auto;
 }
 
-
-
-
 .list-box > div {
   border: 4px solid teal;
   border-radius: 12px;
@@ -16,14 +13,5 @@ main {
   padding: 20px;
 }
 
-.list-box >div > button {
-  border: 2px solid green;
-  border-radius: 4px;
-  font-size: 13px;
-  background-color: white;
-  width: 130px;
-  height: 40px;
-  margin-top: 24px;
-  margin-left: 5px;     
-}
+
 /* margin 골고루 주는 법 버튼 간격 제대로 할려면 어케야함?? */
