@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TodoListItems from './TodoListItems';
 import CompleteTodo from './CompleteTodo';
+import styled from "styled-components"
 
 function TodoList({todoList, setTodoList}) {
     const [completeList, setCompleteList] = useState([]);
@@ -27,22 +28,28 @@ function TodoList({todoList, setTodoList}) {
     }
 
     return (
-        <div className='list-box'>
+        <>
             <h2>working</h2>
-            <div>
+            <StyledList>
                 {
                 todoList.map(todo => <TodoListItems todo ={todo} key={todo.id} removeTodo ={removeTodo} todoToComplete ={todoToComplete} />)
                 }
-            </div>
+            </StyledList>
             <h2>Done</h2>
-            <div>
+            <StyledList>
                 {
                 completeList.map(todo => <CompleteTodo todo ={todo} key={todo.id} removeTodo ={removeTodo} CompleteToTodo ={CompleteToTodo} />)
                 }
-            </div>
-            
-        </div>
+            </StyledList>    
+        </>
     );
 }
+
+
+const StyledList = styled.div`
+    width: 1300px;
+    margin: auto;
+    padding-left: 50px;
+`;
 
 export default TodoList;

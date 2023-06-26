@@ -1,18 +1,36 @@
 import React from 'react';
+import styled from "styled-components"
 
 function TodoListItems({todo, removeTodo, todoToComplete}) {
-    
-    
-    
-
     return (
-        <div className='todo-item'>
+        <StyledItem>
             <h2>{todo.title}</h2>
             <p>{todo.desc}</p>
-            <button onClick={() => removeTodo(todo.id)} >삭제하기</button>
-            <button  onClick={() => todoToComplete(todo.id)} >완료</button>
-        </div>
+            <StyledItemBtn onClick={() => removeTodo(todo.id)} color='red'>삭제하기</StyledItemBtn>
+            <StyledItemBtn  onClick={() => todoToComplete(todo.id)} color="green" >완료</StyledItemBtn>
+        </StyledItem>
     );
 }
+
+
+const StyledItem = styled.div`
+    border:4px solid teal;
+    border-radius: 10px;
+    width: 270px;
+    height: 150px;
+    padding: 20px;
+    margin: 10px;
+`;
+
+const StyledItemBtn = styled.button`
+    width: 120px;
+    height: 40px;
+    border: 2px solid ${(props)=> props.color};
+    border-radius: 10px;
+    background-color: transparent;
+    font-size: 15px;
+    font-weight: bold;
+    margin-right: 10px;
+`;
 
 export default TodoListItems;
