@@ -18,17 +18,19 @@ export const deleteItem = (id) => ({type : DELITE, id})
 
 export const toggleItem = (id) => ({type : TOGGLE, id})
 
+
+
 const initialState = [
     {
         id: 1,
         title: "첫번째",
-        content: "첫번째",
+        desc: "첫번째",
         checked: false,
     },
     {
         id: 2,
         title: "두번째",
-        content: "두번째",
+        desc: "두번째",
         checked: false,
     },
 ]
@@ -38,9 +40,11 @@ const todolist = (state = initialState, action) => {
         case INSERT:
             return state.concat(action.todo);
         case DELITE:
-            return state.filter((id) => id !== action.id);
-        // case TOGGLE:
-        //     return state.map()
+            return state.filter((todo) => todo.id !== action.id);
+        case TOGGLE:
+            let todo = state.find((todo) => todo.id === action.id);
+            todo.checked =!todo.checked;
+            return [...state];
         default:
             return state;
     }
