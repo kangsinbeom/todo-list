@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from "styled-components"
+import { Context } from './Context';
 
-function TodoListItems({todo, removeTodo, todoToComplete}) {
+function TodoListItems({todo}) {
+    const data = useContext(Context);
+    const {todoList, setTitle} = data 
+    
+    const removeTodo = (id) => {
+        const newList = todoList.filter(todo => todo.id !== id);
+        setTitle(newList)
+    }
+
     return (
         <StyledItem>
             <h2>{todo.title}</h2>
             <p>{todo.desc}</p>
             <StyledItemBtn onClick={() => removeTodo(todo.id)} color='red'>삭제하기</StyledItemBtn>
-            <StyledItemBtn  onClick={() => todoToComplete(todo.id)} color="green" >완료</StyledItemBtn>
+            <StyledItemBtn color="green" >완료</StyledItemBtn>
         </StyledItem>
     );
 }
@@ -33,4 +42,7 @@ const StyledItemBtn = styled.button`
     margin-right: 10px;
 `;
 
-export default TodoListItems;
+export default React.memo(TodoListItems);
+
+
+// 템플릿 컴포넌트가 필요한 이유가 뭘까? 생각 좀 해보자

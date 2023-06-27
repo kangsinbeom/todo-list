@@ -1,28 +1,30 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from "styled-components"
 function TodoInsert({todoList, setTodoList}) {
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
     
-
-    const onChangeTitle = (e) => {
+    // 최적화 1번 useEffect를 통해 input에 값이 들어갈 때마다 리랜더링 된것을 막아놓음
+    // 이 부분을 콜백으로 쓴게 보이는데 useCallback 과 Effect의 차이점도 알면 좋겠네
+    const onChangeTitle = useEffect((e) => {
         setTitle(e.target.value)
-    }
+    }, [])
 
-    const onChangeDesc = (e) => {
+    const onChangeDesc = useEffect((e) => {
         setDesc(e.target.value)
-    }
+    }, [])
     
+
     const insertTodo = () => {
         const newTodo = {
             title,
             desc,
-            id : todoList.length + 1
+            id : todoList.length + 1,
+            checked : false
         }
         setTodoList([...todoList, newTodo]);
         setTitle("");
         setDesc("");
-        console.log(todoList)
     }
     return (
         <StyledDiv>
