@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import StyledInput from './common/input/StyledInput';
 
 const TodoInsert = ({onInsertHandler}) => {
     const [title, setTitle] = useState("");
@@ -20,8 +21,8 @@ const TodoInsert = ({onInsertHandler}) => {
 
     return (
         <form onSubmit={onSubmitHandler}>
-            title : <input value={title} onChange={onChangeTitleHandler}/>
-            desc : <input  value={desc} onChange={onChangeDescHandler}/>
+            title : <StyledInput value={title} onChange={onChangeTitleHandler}/>
+            desc : <StyledInput  value={desc} onChange={onChangeDescHandler}/>
             <button>input</button>
         </form>
     );

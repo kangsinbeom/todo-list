@@ -1,35 +1,60 @@
 import React from 'react';
 import styled from "styled-components"
-import { useDispatch } from "react-redux";
-import { deleteItem, toggleItem } from '../redux/modules/TodoList';
-function TodoListItem({title, desc, id}) {
-    const dispatch = useDispatch();
-    
-    const deleteHandler = (e) => {
-        dispatch(deleteItem(id));
-    }
+import StyledButton from './common/button/StyledButton';
+import EditingInput from './EditingInput';
 
-    const ToggleHandler = (e) => {  
-        dispatch(toggleItem(id));
-    }
+function TodoListItem({item, deleteHandler, ToggleHandler}) {
+    const {title, desc, id} = item;
+    console.log(title, id, desc);
 
     return (
-        <StDiv>
-            <h2>{title}</h2>
-            <p>{desc}</p>
-            <button onClick={deleteHandler}>Delete</button>
-            <button onClick={ToggleHandler}>Add</button>
-        </StDiv>
+        <ItemWrapper>
+            <header><h2>{title}</h2></header>
+            <main><EditingInput id={id} desc={desc} /></main>
+            <footer>
+            <StyledButton onClick={() => deleteHandler(id)}>Delete</StyledButton>
+            <StyledButton onClick={() => ToggleHandler(id)}>Add</StyledButton>
+            </footer>
+        </ItemWrapper>
         
     );
 }
 
-const StDiv = styled.div`
-    border: 3px solid teal;
-    border-radius: 10px;
+const ItemWrapper = styled.div`
+    border: 3px solid black;
+    border-radius: 20px;
     margin : 10px;
     width :300px;
     heigth :300px;
+    padding : 10px;
+    header {
+        border-left: 10px solid gray;
+        padding-left : 2%;
+    }
+    main {
+        
+        display : flex;
+        justify-content : left;
+        width : 80%;
+        height : 40px;
+        padding-left : 10px;
+        border-bottom : 3px solid gray;
+    }
+    footer {
+        display : flex;
+        align-items : center;
+        flex-direction : raw;
+        margin-top : 20px;
+        :first-child {
+            margin-left : 35%;
+        }
+
+        :last-child {
+            margin-left : auto;
+            margin-right : 5%;
+        }
+    }
+
     @media screen and (max-width: 768px) {
         width : 200px; 
         heigth : 200px;

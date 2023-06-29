@@ -1,6 +1,8 @@
-const INSERT = "INSERT"
-const DELITE = "DELITE"
-const TOGGLE = "TOGGLE"
+const INSERT = "TodoList/INSERT"
+const DELETE = "TodoList/DELETE"
+const TOGGLE = "TodoList/TOGGLE"
+const UPDATE = "TodoList/UPDATE"
+
 
 let id = 3;
 
@@ -14,11 +16,15 @@ export const insertItem = ({title, desc}) => ({
     },
 })
 
-export const deleteItem = (id) => ({type : DELITE, id})
+export const deleteItem = (id) => ({type : DELETE, id})
 
 export const toggleItem = (id) => ({type : TOGGLE, id})
 
-
+export const updateItem = ({id, newDesc}) => ({
+    type : UPDATE,
+    id,
+    desc : newDesc,
+})
 
 const initialState = [
     {
@@ -39,12 +45,14 @@ const todolist = (state = initialState, action) => {
     switch (action.type) {
         case INSERT:
             return state.concat(action.todo);
-        case DELITE:
+        case DELETE:
             return state.filter((todo) => todo.id !== action.id);
         case TOGGLE:
             let todo = state.find((todo) => todo.id === action.id);
             todo.checked =!todo.checked;
             return [...state];
+        case UPDATE:
+            return state.map((todo) => todo.id === action.id && {...todo, desc : action.desc});
         default:
             return state;
     }
