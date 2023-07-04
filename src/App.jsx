@@ -1,10 +1,8 @@
-import React from 'react';
-import Template from './components/Template';
+import React from "react";
+import Router from "./shared/Router";
 
 function App(props) {
-    return (
-        <Template></Template>
-    );
+  return <Router />;
 }
 
 export default App;
