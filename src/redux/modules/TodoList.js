@@ -52,11 +52,11 @@ const todolist = (state = initialState, action) => {
             todo.checked =!todo.checked;
             return [...state];
         case UPDATE:
-            return state.map((todo) => todo.id === action.id && {...todo, desc : action.desc});
+            return state.map((todo) => todo.id === action.id ? {...todo, desc : action.desc} : todo );
         default:
             return state;
     }
 }
-
+// update 부분에서 유효성검사를 제대로 하지 않아서 (&& => 3항연산자를 사용했음 ) 오류가 나는 부분이 있었음
 
 export default todolist;
